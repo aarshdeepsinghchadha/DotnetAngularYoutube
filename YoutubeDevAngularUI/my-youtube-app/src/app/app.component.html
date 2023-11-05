@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- The head section includes meta tags, title, and any external styles or scripts -->
+    <meta charset="UTF-8">
+    <title>YoutubeDotnet</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <!-- Additional meta tags, styles, or scripts go here -->
+  </head>
+  <body class="bg-black">
+    <!-- Section 1: Title -->
+    <div class="h-screen flex items-center justify-center">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold mb-8 text-white">
+          Dotnet 8 and YouTube Dev API
+        </h1>
+      </div>
+    </div>
+
+   <!-- Section 2: Videos -->
+<div class="container mx-auto text-center mt-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div *ngFor="let video of videos" class="bg-gray-900 rounded-lg p-4 hover:bg-gray-800 transition duration-300">
+      <h2 class="text-xl font-semibold mb-2 text-white">{{ video.title }}</h2>
+      <p class="text-gray-400 text-white">
+        Published on: {{ video.publishedAt | date:'short' }}
+      </p>
+      <a [href]="video.link" target="_blank">
+        <img
+          [src]="video.thumbnail"
+          alt="{{ video.title }}"
+          class="mt-4 rounded-lg"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Section 3: Pagination Controls -->
+    <div class="mt-4 text-center">
+      <div>
+        <button
+          *ngIf="prevPageToken"
+          class="px-8 py-3 bg-blue-500 text-white rounded-md mx-2"
+          (click)="loadVideos(prevPageToken)"
+        >
+          Previous Page
+        </button>
+        <button
+          *ngIf="nextPageToken"
+          class="px-8 py-3 bg-blue-500 text-white rounded-md mx-2"
+          (click)="loadVideos(nextPageToken)"
+        >
+          Next Page
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
